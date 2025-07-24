@@ -1,2 +1,2 @@
 # PP-s-ArtGalary
-I website for my artworks 
+A website for my artworks 
