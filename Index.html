@@ -1,0 +1,550 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Philip Art Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: #1a1a1a;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid #d4af37;
+            object-fit: cover;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: normal;
+            font-family: 'Georgia', serif;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        nav ul li a:hover {
+            color: #d4af37;
+        }
+        
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('IMG_1399.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: 'Georgia', serif;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #d4af37;
+            color: #1a1a1a;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e8c252;
+        }
+        
+        .about-section {
+            padding: 80px 5%;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            font-family: 'Georgia', serif;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #d4af37;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .artworks-section {
+            padding: 80px 5%;
+            background-color: #f9f9f9;
+        }
+        
+        .artworks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .artwork-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .artwork-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .artwork-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .artwork-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .artwork-item:hover .artwork-image img {
+            transform: scale(1.05);
+        }
+        
+        .artwork-info {
+            padding: 20px;
+        }
+        
+        .artwork-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        .artwork-info .year {
+            color: #777;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .artwork-info .description {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .artwork-info .medium {
+            font-style: italic;
+            color: #d4af37;
+            font-weight: 500;
+        }
+        
+        .contact-section {
+            padding: 80px 5%;
+            background-color: white;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            font-family: 'Georgia', serif;
+        }
+        
+        .contact-details p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            margin-right: 10px;
+            color: #d4af37;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-form button {
+            background-color: #d4af37;
+            color: #1a1a1a;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .contact-form button:hover {
+            background-color: #e8c252;
+        }
+        
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px 5%;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #d4af37;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .artworks-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="passport.jpeg" alt="Prince Philip">
+            <h1>PRINCE PHILIP ART GALLERY</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#artworks">Artworks</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Annoh Prince Philip Lartey</h2>
+            <p>Bringing imagination to life through mosaic, paint, and charcoal art</p>
+            <a href="#artworks" class="btn">View Artworks</a>
+        </div>
+    </section>
+    
+    <section id="about" class="about-section">
+        <h2 class="section-title">My Artistic Journey</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>From Childhood Passion to Artistic Expression</h3>
+                <p>Since I was a little boy, I have had the desire and natural talent for drawing and painting using indigenous tools like charcoal, pencil, and ink. As I grew up, my skill and desire for art improved, and I could depict reality using basic art tools and materials.</p>
+                <p>In high school, I poured my heart into creating artwork that showcased my curiosity and love for exploration. Although Arts may not be my main focus or ultimate goal, these pieces hold a special place in my heart. Each artwork represents my ability to bring imagination to life, embrace risks, and transform ideas into tangible creations. More importantly, they symbolize my growth and passion for Arts.</p>
+                <p>My work primarily focuses on capturing everyday Ghanaian life, from bustling market scenes to quiet moments of human connection, using a variety of mediums including mosaic, paint, and charcoal.</p>
+            </div>
+            <div class="about-image">
+                <img src="GIFTY'S DRAWING .jpeg" alt="Gifty's Beauty">
+            </div>
+        </div>
+    </section>
+    
+    <section id="artworks" class="artworks-section">
+        <h2 class="section-title">Featured Artworks</h2>
+        <div class="artworks-grid">
+            <div class="artwork-item">
+                <div class="artwork-image">
+                    <img src="PRINCE ART PORTFOLIO (1)_page-0004.jpg" alt="Market Day @ Keta">
+                </div>
+                <div class="artwork-info">
+                    <h3>Market Day @ Keta</h3>
+                    <div class="year">2023</div>
+                    <div class="description">A captured scene of market activities at Keta Market</div>
+                    <div class="medium">Mosaic art</div>
+                </div>
+            </div>
+            
+            <div class="artwork-item">
+                <div class="artwork-image">
+                    <img src="PRINCE ART PORTFOLIO (1)_page-0005.jpg" alt="Fishermen @ Dawn">
+                </div>
+                <div class="artwork-info">
+                    <h3>Fishermen @ Dawn</h3>
+                    <div class="year">2023</div>
+                    <div class="description">A scene of men leaving the shore for fishing</div>
+                    <div class="medium">Mosaic art</div>
+                </div>
+            </div>
+            
+            <div class="artwork-item">
+                <div class="artwork-image">
+                    <img src="PRINCE ART PORTFOLIO (1)_page-0006.jpg" alt="Keta Christian School">
+                </div>
+                <div class="artwork-info">
+                    <h3>Keta Christian School</h3>
+                    <div class="year">2022</div>
+                    <div class="description">Colorful image of the School surroundings</div>
+                    <div class="medium">Mosaic & Paint Art</div>
+                </div>
+            </div>
+            
+            <div class="artwork-item">
+                <div class="artwork-image">
+                    <img src="PRINCE ART PORTFOLIO (1)_page-0007.jpg" alt="Sunflower">
+                </div>
+                <div class="artwork-info">
+                    <h3>Sunflower</h3>
+                    <div class="year">2022</div>
+                    <div class="description">Imaginative Drawing</div>
+                    <div class="medium">Mosaic & Paint Art</div>
+                </div>
+            </div>
+            
+            <div class="artwork-item">
+                <div class="artwork-image">
+                    <img src="PRINCE ART PORTFOLIO (1)_page-0008.jpg" alt="Mother's Love">
+                </div>
+                <div class="artwork-info">
+                    <h3>Mother's Love</h3>
+                    <div class="year">2021</div>
+                    <div class="description">Imaginative Drawing</div>
+                    <div class="medium">Mosaic & Paint Art</div>
+                </div>
+            </div>
+            
+            <div class="artwork-item">
+                <div class="artwork-image">
+                    <img src="PRINCE ART PORTFOLIO (1)_page-0009.jpg" alt="The Perfect Picture">
+                </div>
+                <div class="artwork-info">
+                    <h3>The Perfect Picture</h3>
+                    <div class="year">2021</div>
+                    <div class="description">Charcoal Portrait of My Mother</div>
+                    <div class="medium">Charcoal & Pencil Art</div>
+                </div>
+            </div>
+            
+            <div class="artwork-item">
+                <div class="artwork-image">
+                    <img src="PRINCE ART PORTFOLIO (1)_page-0010.jpg" alt="Sophia's Smile">
+                </div>
+                <div class="artwork-info">
+                    <h3>Sophia's Smile</h3>
+                    <div class="year">2021</div>
+                    <div class="description">Painted Portrait of Baby Sophia</div>
+                    <div class="medium">Paint Art</div>
+                </div>
+            </div>
+            
+            <div class="artwork-item">
+                <div class="artwork-image">
+                    <img src="PRINCE ART PORTFOLIO (1)_page-0011.jpg" alt="Patient Vigil">
+                </div>
+                <div class="artwork-info">
+                    <h3>Patient Vigil</h3>
+                    <div class="year">2020</div>
+                    <div class="description">Imaginative Drawing</div>
+                    <div class="medium">Mosaic Art</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="contact-details">
+                    <p><i class="fas fa-phone"></i> (+233) 540671057</p>
+                    <p><i class="fas fa-envelope"></i> pamohlartey@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Ghana</p>
+                    <p><i class="fas fa-palette"></i> Available for commissions</p>
+                </div>
+                <h3>Follow Me</h3>
+                <div class="contact-details">
+                    <p><i class="fab fa-instagram"></i> @princephilip_art</p>
+                    <p><i class="fab fa-facebook"></i> Prince Philip Art</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Send a Message</h3>
+                <form action="#" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="text" name="subject" placeholder="Subject">
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>Prince Philip Art Gallery</h3>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 Prince Philip Art Gallery. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
